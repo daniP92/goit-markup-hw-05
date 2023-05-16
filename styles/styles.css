@@ -105,6 +105,7 @@ h5 {
 .global-header {
   display: flex;
   padding-left: 215px;
+  max-width: 1600px;
 }
 
 .logo-section {
@@ -163,11 +164,32 @@ h5 {
   margin-top: 32px;
 }
 
+.nav-list a {
+  position: relative;
+  height: 100%;
+}
+
 .nav-list a:hover,
 .nav-list a:focus,
+.nav-list .current-page,
 .header-info-contacts a:hover,
 .header-info-contacts a:focus {
   color: var(--blue-theme-color);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-list a:hover::after,
+.nav-list .current-page::after {
+  position: absolute;
+  content: '';
+  background: var(--blue-theme-color);
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  bottom: -30px;
+  right: 50%;
+  transform: translateX(50%);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-info-contacts {
@@ -176,7 +198,6 @@ h5 {
   margin-left: 330px;
   margin-top: 32px;
   height: 16px;
-  min-width: 100%;
 }
 
 .header-info-contacts a {
@@ -259,7 +280,8 @@ h5 {
   padding-bottom: 94px;
 }
 
-.about-us h5 {
+.about-us h5,
+.what-we-do h5 {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -301,6 +323,10 @@ h5 {
   padding-bottom: 94px;
 }
 
+.what-we-do li {
+  position: relative;
+}
+
 .what-we-do h2 {
   font-style: normal;
   font-weight: 700;
@@ -308,6 +334,18 @@ h5 {
   line-height: 42px;
   text-align: center;
   letter-spacing: 0.03em;
+}
+
+.what-we-do h5 {
+  display: flex;
+  width: 370px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 3px;
+  background-color: #2F303ACC;
+  color: #fff;
 }
 
 .what-we-do ul {
@@ -408,15 +446,14 @@ h5 {
 .icon-social-media svg:hover,
 .icon-social-media svg:focus {
   fill: #ffffff;
-  transition: fill 0.3s ease;
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-social-media:hover,
 .icon-social-media:focus {
   border-radius: 50%;
   background-color: var(--blue-theme-color);
-  /* fill: #ffffff; */
-  transition: background-color 0.3s ease;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .regular-customers {
@@ -466,12 +503,13 @@ h5 {
 .customer svg:hover,
 .customer svg:focus {
   fill: var(--blue-theme-color);
-  border-color: var(--blue-theme-color);
+  transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .regular-customers .customer:hover,
 .regular-customers .customer:focus {
   border-color: var(--blue-theme-color);
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-section {
@@ -513,6 +551,7 @@ h5 {
 .footer-adress .mail-footer:focus,
 .footer-adress .phone-footer:focus {
   color: var(--blue-theme-color);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-adress .logo-section {
@@ -564,6 +603,7 @@ h5 {
 .icon-social-media.footer:focus {
   background-color: var(--blue-theme-color);
   border-radius: 50%;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-social-media.footer svg {
@@ -609,10 +649,11 @@ h5 {
   text-align: center;
   letter-spacing: 0.03em;
   color: #FFFFFF;
-  background: var(--blue-theme-color);
+  background-color: var(--blue-theme-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .all-content ul {
@@ -635,9 +676,12 @@ h5 {
 .all-content li:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .all-content h4 {
+  padding-top: 20px;
+  padding-left: 24px;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -646,6 +690,8 @@ h5 {
 }
 
 .all-content p {
+  padding-left: 24px;
+  padding-top: 4px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -661,12 +707,97 @@ h5 {
   height: 110px;
 }
 
-.content-name h4 {
-  padding-top: 20px;
-  padding-left: 24px;
+.content-hover {
+  position: relative;
+  overflow: hidden;
 }
 
-.content-name p {
-  padding-left: 24px;
-  padding-top: 4px;
+.content-hover p {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 63px 24px 5px;
+  background-color: #2196F3E5;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+  overflow: hidden;
+  transition-property: top, right, bottom, left;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  top: 100%;
+}
+
+.content-hover:hover p {
+  top: 0;
+}
+
+
+/* Modal section */
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #00000033;
+  width: 100vw;
+  height: 100wh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 528px;
+  height: 581px;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  animation: modalScale 500ms linear 1000ms;
+}
+
+.is-hidden {
+  transform: scale(0);
+  visibility: hidden;
+}
+
+.close-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  --r-btn: 30px;
+  width: var(--r-btn);
+  height: var(--r-btn);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #FFFFFF;
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 1px;
+}
+
+.close-btn:hover {
+  background: red;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalScale {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
